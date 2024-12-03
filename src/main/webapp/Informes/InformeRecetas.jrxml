@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3a932efb-4045-43b5-b357-4e28f660bf27">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="empleado_id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_desde" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_hasta" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    r.idrecetas_productos AS id, 
+    r.nombre_receta, 
+    CONCAT(e.emple_nombre, ' ', e.emple_apellido) AS empleado, 
+    r.recetaspro_estado AS estado
+FROM 
+    recetas r
+INNER JOIN 
+    empleados e ON r.empleados_id = e.idempleados
+WHERE 
+    r.recetaspro_estado = 'Finalizado'
+    AND r.fecha_receta BETWEEN $P{fecha_desde} AND $P{fecha_hasta} 
+    AND ($P{empleado_id} IS NULL OR r.empleados_id = $P{empleado_id})
+AND r.recetaspro_estado = 'Finalizado';]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="nombre_receta" class="java.lang.String"/>
+	<field name="empleado" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="137" splitType="Stretch">
+			<rectangle>
+				<reportElement x="383" y="113" width="191" height="21" uuid="06d8db70-aea1-4c73-b931-7cbc0f4b5d8b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="113" width="140" height="21" uuid="82bf755f-519d-48c6-b9ea-bf9442cf1021"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="630" height="113" uuid="ccea965e-be4b-4d10-b9ce-9c30ec3fedb2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="312" y="37" width="312" height="20" uuid="ab055611-8628-4cca-8a8c-fbf667576f1a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ypacarai - Paraguay]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="141" y="113" width="242" height="21" uuid="ae9fd8ca-af7a-483e-99b7-07fc365bc6e9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="630" y="0" width="171" height="113" uuid="a48f6411-877f-47f5-80fa-863611e2fd3e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="311" y="79" width="312" height="20" uuid="4cd0793f-62be-4e80-a680-0a808920bbfc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[+595-992-746-116]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="291" height="113" uuid="cf797761-01a4-43c6-8c5f-e73e844807f0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Informes De Recetas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="14" width="312" height="20" uuid="06cfd918-ba62-4204-845d-39e66e676f80"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fernanda Araoz]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="574" y="113" width="228" height="21" uuid="57dcfefe-98ec-432c-be5f-8150dec83e35"/>
+			</rectangle>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="631" y="2" width="171" height="113" uuid="53ca8c94-4f5f-4cf3-8b32-a62c943b1981"/>
+				<imageExpression><![CDATA["./pasteleria.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="311" y="56" width="313" height="20" uuid="785991d7-0bb9-45bf-9866-01f21291a8b3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[dulcesmimos24@gmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="574" y="114" width="227" height="20" uuid="e386f81b-a118-4095-b337-ac0e2e91f908"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="114" width="140" height="20" uuid="865f0d88-af4c-4971-849b-a8037b9b9bac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="383" y="112" width="191" height="21" uuid="bb96f893-8557-4f06-a3fe-34f53f5c811c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="115" width="242" height="20" uuid="7697b303-6deb-48d2-9094-b760b2eee5ee"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Producto]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="2" width="140" height="20" uuid="ffd92fb7-b492-4068-9c92-5a14cf77fd6d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="2" width="242" height="20" uuid="94d15b0a-219c-4c6a-99a8-94a5b1ac1f86"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_receta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="574" y="2" width="228" height="20" uuid="33d91ccc-ec68-4038-8504-a5462f6d873e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="383" y="2" width="191" height="20" uuid="f3627f3c-ba40-465b-8fab-4898279c9f1d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="243649ee-3f11-40ab-8483-0d6160ff3328">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cab" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    dc.detcompras_cantidad,
+    dc.detcompras_preciounitario,
+    dc.compra_id,
+    dc.ingredientes_id,
+    i.ingre_nombre,
+    i.impuesto
+FROM 
+    public.detalle_compras dc
+JOIN 
+    public.ingredientes i ON dc.ingredientes_id = i.idingredientes
+WHERE 
+    dc.compra_id = $P{cab};]]>
+	</queryString>
+	<field name="detcompras_cantidad" class="java.lang.Integer"/>
+	<field name="detcompras_preciounitario" class="java.lang.Integer"/>
+	<field name="compra_id" class="java.lang.Integer"/>
+	<field name="ingredientes_id" class="java.lang.Integer"/>
+	<field name="ingre_nombre" class="java.lang.String"/>
+	<field name="impuesto" class="java.lang.String"/>
+	<variable name="resultado5" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{impuesto}.equals('5') ? $F{detcompras_cantidad} * $F{detcompras_preciounitario} : null]]></variableExpression>
+	</variable>
+	<variable name="resultado10" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{impuesto}.equals('10') ? $F{detcompras_cantidad} * $F{detcompras_preciounitario} : null]]></variableExpression>
+	</variable>
+	<variable name="subtotal5" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{resultado5}]]></variableExpression>
+	</variable>
+	<variable name="subtotal10" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{resultado10}]]></variableExpression>
+	</variable>
+	<variable name="resultado0" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{impuesto}.equals('0') ? $F{detcompras_cantidad} * $F{detcompras_preciounitario} : null]]></variableExpression>
+	</variable>
+	<variable name="subtotal0" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{resultado0}]]></variableExpression>
+	</variable>
+	<variable name="totalcompra" class="java.lang.Integer">
+		<variableExpression><![CDATA[($V{subtotal5} == null ? 0 : $V{subtotal5}) + ($V{subtotal10} == null ? 0 : $V{subtotal10}) + ($V{subtotal0} == null ? 0 : $V{subtotal0})]]></variableExpression>
+	</variable>
+	<variable name="iva5" class="java.lang.Integer">
+		<variableExpression><![CDATA[($V{subtotal5} == null ? 0 : $V{subtotal5}) / 21]]></variableExpression>
+	</variable>
+	<variable name="iva10" class="java.lang.Integer">
+		<variableExpression><![CDATA[($V{subtotal10} == null ? 0 : $V{subtotal10}) / 11]]></variableExpression>
+	</variable>
+	<variable name="total_iva" class="java.lang.Integer">
+		<variableExpression><![CDATA[($V{iva5} == null ? 0 : $V{iva5}) + ($V{iva10} == null ? 0 : $V{iva10})]]></variableExpression>
+	</variable>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="479" y="0" width="46" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="32ced712-faed-4c84-b0c1-d3d06e9af8d0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{resultado10}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="420" y="0" width="53" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="d04741ee-50eb-4c2f-bcfe-fbd0f83ad16e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{resultado5}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="373" y="0" width="47" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="0a1dabf5-58b2-4420-9ac0-d70cabea7408"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{resultado0}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement isPrintRepeatedValues="false" x="303" y="0" width="50" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="cbab4dc2-b509-409d-bdfb-dfece9f89281"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{detcompras_preciounitario}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement isPrintRepeatedValues="false" x="116" y="0" width="146" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="234e390c-89ad-45d4-871b-e165bf2fa076"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ingre_nombre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="19" y="0" width="43" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="bdef10fb-f807-41af-adc0-4078a3d419df"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{detcompras_cantidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

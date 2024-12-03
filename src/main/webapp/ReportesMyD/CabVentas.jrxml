@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6f327dac-a764-44b4-b4e8-e9dc08489246">
+	<property name="ireport.zoom" value="0.9330147604194667"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cab" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\ferna\\OneDrive\\Documentos\\NetBeansProjects\\ecommerce\\src\\main\\webapp\\ReportesMyD\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    '001-002-' || LPAD(v.idventas::text, 6, '0') AS idventa_format,
+    v.ventas_fecha,
+    v.hora,
+    cl.cli_nombre,
+    cl.cli_apellido,
+    cl.cli_ruc,
+    v.venta_timbrado,
+    v.venta_inicio AS fecha_inicio,
+    v.venta_fin AS fecha_fin,
+    CASE 
+        WHEN v.condicion_venta = 'Contado' THEN 'X'
+        ELSE ''
+    END AS colum_contado,
+    CASE 
+        WHEN v.condicion_venta = 'Credito' THEN 'X'
+        ELSE ''
+    END AS colum_credito
+FROM 
+    public.ventas v
+JOIN 
+    public.clientes cl ON v.clientes_id = cl.idclientes
+WHERE 
+    v.idventas = $P{cab}
+GROUP BY 
+    idventa_format,
+    v.ventas_fecha,
+    v.hora,
+    cl.cli_nombre,
+    cl.cli_apellido,
+    cl.cli_ruc,
+    v.venta_timbrado,
+    v.venta_inicio,
+    v.venta_fin,
+    v.condicion_venta;]]>
+	</queryString>
+	<field name="idventa_format" class="java.lang.String"/>
+	<field name="ventas_fecha" class="java.sql.Date"/>
+	<field name="hora" class="java.sql.Time"/>
+	<field name="cli_nombre" class="java.lang.String"/>
+	<field name="cli_apellido" class="java.lang.String"/>
+	<field name="cli_ruc" class="java.lang.String"/>
+	<field name="venta_timbrado" class="java.lang.String"/>
+	<field name="fecha_inicio" class="java.sql.Date"/>
+	<field name="fecha_fin" class="java.sql.Date"/>
+	<field name="colum_contado" class="java.lang.String"/>
+	<field name="colum_credito" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="185" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="358" height="122" uuid="cd87a488-c8e6-46c2-8dfe-b4f3bea2d36c"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="112" y="50" width="242" height="20" uuid="8172a5d5-f3c7-4522-a520-9e615a10eba7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[dulcesmimos24@gmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="27" width="242" height="20" uuid="5c48085b-edb0-4393-8210-d0ff12bf0ac1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Ypacarai - Paraguay]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="75" width="242" height="20" uuid="aac7fc0e-3d86-4b9f-a619-8348dbc9c9d9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[+595-992-746-116]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="3" width="242" height="20" uuid="9320a77f-459d-42f0-b11b-b706f74257ce"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dulces Mimos]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="358" y="0" width="197" height="122" uuid="58f94e44-d8d2-4692-8bb5-9fd95364c3f2"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="164" width="396" height="21" uuid="7d517adc-d27c-435c-a574-90b78620cabc"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="164" width="49" height="21" uuid="e4995ec3-e35d-43e5-b9fa-bd8f17073856"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[  Ruc:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="144" width="396" height="19" uuid="3b62f0af-c5ed-4e64-99de-ada58f8d8773"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="396" y="123" width="159" height="21" uuid="bb4bef94-f585-442f-a8ae-b4ca82af2e52"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="396" y="144" width="75" height="41" uuid="d03f0088-ebaa-4821-a1d4-8a861c88774a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="440" y="164" width="19" height="15" uuid="cc70240e-ef5c-44a1-85a7-6ada83739006"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="3" y="144" width="154" height="19" uuid="e7ddaabd-b580-4a48-9d17-3bdb335c555e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[  Nombre o Razon Social:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="123" width="396" height="21" uuid="854c2d67-5595-4c73-aa5e-9f05daededa0"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="396" y="143" width="75" height="20" uuid="9626abd3-1beb-40e2-ad3c-fdc4b2a1f8b1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[  CONTADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="7" width="82" height="20" uuid="19e50905-8223-4752-b98b-a83a704e1ab5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIMBRADO N° ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="30" width="79" height="20" uuid="7ead1ec3-c1db-48e3-ac60-847dbca79809"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="55" width="72" height="20" uuid="6092d0d3-750e-41c2-9814-2b2e6518b1b8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Fin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="81" width="27" height="20" uuid="55e6b052-d560-434c-b135-b99f7fd07673"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="124" width="120" height="20" uuid="f9720106-c7b0-419c-8365-e213de531780"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[  Fecha De Emision :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="123" width="159" height="21" uuid="e6c0fd68-f80f-4194-83bf-a16a8eef16e8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CONDICION DE VENTA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="471" y="144" width="84" height="41" uuid="33075dfe-5e5a-4fe6-9bd6-4f8ef9526860"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="471" y="144" width="84" height="20" uuid="5362830f-749d-4521-84ef-d9f86d83222f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[  CREDITO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="510" y="164" width="19" height="15" uuid="90b844b6-4feb-4eb2-bc33-3f844f765535"/>
+			</rectangle>
+			<textField>
+				<reportElement x="410" y="81" width="100" height="20" uuid="c197fc15-c2a9-4f6f-9d19-0691916fb5b1"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idventa_format}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="459" y="5" width="96" height="20" uuid="c44d28f7-7d55-4ce1-a652-6ac44acfbf07"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{venta_timbrado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="457" y="30" width="98" height="20" uuid="f8e3698b-af2f-41a5-ac96-69bb9c7e3847"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_inicio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="457" y="55" width="83" height="20" uuid="ef34ee3a-11e4-4102-955e-5e66721bf7cc"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_fin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="167" y="143" width="100" height="20" uuid="5c925b89-26d6-4227-ae52-f0c58487f652"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cli_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="143" width="100" height="20" uuid="4cc924a0-92f9-4b00-a8ff-83d8b2104a90"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cli_apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="91" y="165" width="100" height="20" uuid="6024a0c3-982c-4e53-8e80-439adb9c4bce"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cli_ruc}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="133" y="124" width="100" height="20" uuid="d0ccbf40-fc78-4abc-98b8-8b2f9a7558d9"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ventas_fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="164" width="19" height="15" uuid="c4b074ec-82ef-4b8d-a06c-8d9924d92b7e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{colum_contado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="165" width="19" height="14" uuid="2794ab8b-1513-404f-b194-b5e11421203c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{colum_credito}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="2" y="0" width="110" height="122" uuid="62c7faff-0e4d-413b-9a96-2b2e98df6eb5"/>
+				<imageExpression><![CDATA["./pasteleria.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="297" splitType="Stretch">
+			<rectangle>
+				<reportElement x="385" y="255" width="170" height="40" uuid="4e2c3462-84e1-4268-a12a-87182c9085db"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="436" y="0" width="54" height="236" uuid="4fdec182-d8b4-4a3d-9d05-2a3ec2c32c08"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="490" y="235" width="65" height="20" uuid="0ff3bd19-d2a9-41fe-adba-48d4dd6aa2eb"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="-1" width="92" height="236" uuid="c5739dbf-2203-4c6e-b0fe-9017f96c04b9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="385" y="235" width="51" height="20" uuid="5f6a8c56-94cc-4cec-865b-8b640197feb3"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="275" width="385" height="20" uuid="f884b858-6307-463e-925f-e16aad4575c1"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="255" width="385" height="20" uuid="ed4ffad8-8a9a-4d95-bc08-534b04644300"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="235" width="385" height="20" uuid="cc0328cc-ec23-4fea-8482-10fd36c44303"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="436" y="235" width="54" height="20" uuid="18eda348-8387-4d8b-9fd1-01f50e6622bf"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="490" y="-1" width="65" height="236" uuid="e3baf1fc-871f-4f11-a084-0ac4ba706775"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="93" y="-1" width="219" height="236" uuid="d163fd71-66f6-4ad5-8f57-b4000ed0cf55"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="93" y="0" width="219" height="20" uuid="cda880d1-a1c5-4657-9cec-69f1fa06f29b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="93" y="0" width="219" height="20" uuid="a544249a-4c2a-4c73-be58-785c594edc5c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCION O SERVICIO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="0" width="92" height="20" uuid="2559d133-7b32-4fe2-a5b5-4b9b1fc32202"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="0" width="92" height="20" uuid="dccb1e60-2fda-40be-9689-656bb23340d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="436" y="0" width="54" height="20" uuid="fdd3e59a-1039-45c6-b927-28a24d6ef591"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="235" width="100" height="20" uuid="42788775-b8e9-443f-8495-d9fde1631e71"/>
+				<textElement textAlignment="Justified" verticalAlignment="Bottom">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ SUB TOTALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="255" width="100" height="20" uuid="3edd7935-b870-4bff-81a2-1534558ffce2"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ SON GS.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="275" width="73" height="20" uuid="52efc518-21aa-44e4-a0d7-311d360a6dbd"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ LIQ IVA 5%:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="275" width="31" height="19" uuid="50139a40-7170-4f70-b32f-82ab0ea2f12f"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ 10%:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="252" y="274" width="60" height="20" uuid="23cad977-d3f6-4428-b7d4-7d14e8b7568f"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[TOTAL IVA]]></text>
+			</staticText>
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="2" y="3" width="200" height="100" uuid="8016bb12-fde0-4c33-8b2f-9cdb396052ec"/>
+				<subreportParameter name="cab">
+					<subreportParameterExpression><![CDATA[$P{cab}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[".\\DetVentas.jasper"]]></subreportExpression>
+			</subreport>
+			<rectangle>
+				<reportElement x="312" y="-1" width="73" height="236" uuid="a16e37fa-882a-4066-8598-93933cf00c9a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="312" y="0" width="73" height="20" uuid="c292e99c-07dd-4e58-b17c-d292352f1c68"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="312" y="1" width="72" height="20" uuid="28afd211-5116-48f0-91b0-569a9a1e4df2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PRECIO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="385" y="0" width="51" height="235" uuid="8983feb9-099c-4e6e-b9e6-0c5ddea16325"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="385" y="0" width="51" height="20" uuid="7d576ab8-36c6-4236-97ca-6f7725bfa5ab"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="384" y="0" width="51" height="20" uuid="41c8b077-fbf1-4bde-b5a6-f5bfc353710c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[EXENTA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="490" y="0" width="65" height="20" uuid="3ce11a9d-cb97-4b9c-b430-71c11ec61edc"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="436" y="0" width="53" height="20" uuid="f4e33e2f-cb26-4260-902f-7ac060d05c2b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[5%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="0" width="65" height="20" uuid="f1bbf383-73a5-4c72-893e-018b98596787"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[10%]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="2" y="194" width="200" height="100" uuid="8ed77520-2545-41a9-8c5c-d34ccf512cd4"/>
+				<subreportParameter name="cab">
+					<subreportParameterExpression><![CDATA[$P{cab}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[".\\DetVentas_1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

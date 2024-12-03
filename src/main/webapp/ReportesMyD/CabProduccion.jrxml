@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="344cdd3f-7d98-4e8a-8dc6-cbe4453879bb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cab" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\ferna\\OneDrive\\Documentos\\NetBeansProjects\\ecommerce\\src\\main\\webapp\\ReportesMyD\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    p.idproduccion,
+    p.fecha_elaboracion,
+    p.fecha_vencimiento,
+    p.cantidad,
+    r.nombre_receta
+FROM 
+    produccion p
+JOIN 
+    recetas r ON p.receta_id = r.idrecetas_productos
+WHERE 
+    p.idproduccion = $P{cab}
+GROUP BY 
+    p.idproduccion,
+    p.fecha_elaboracion,
+    p.fecha_vencimiento,
+    p.cantidad,
+    r.nombre_receta;]]>
+	</queryString>
+	<field name="idproduccion" class="java.lang.Integer"/>
+	<field name="fecha_elaboracion" class="java.sql.Date"/>
+	<field name="fecha_vencimiento" class="java.sql.Date"/>
+	<field name="cantidad" class="java.lang.Integer"/>
+	<field name="nombre_receta" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="176" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="396" height="117" uuid="456c47f0-2b10-4a08-b255-f9660b20b126"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="396" y="1" width="158" height="117" uuid="07fa898b-4230-4bbc-8a81-9d0da8fcf04a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="148" y="48" width="242" height="20" uuid="7675f9b9-7c6b-4776-a8eb-0c880a092300"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[dulcesmimos24@gmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="0" width="158" height="118" uuid="662433fa-a6c6-4e90-ab60-01acbe90499b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMPROBANTE INTERNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="28" width="242" height="20" uuid="1e4372f5-c862-4939-8f34-af0706fa8c5b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Ypacarai - Paraguay]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="94" width="114" height="20" uuid="77de2d1c-6d75-4dca-bab0-2d8c4384830f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° De Producción:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="8" width="242" height="20" uuid="05279ca1-6f26-4284-b68c-7fab2b3ed967"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Dulces Mimos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="68" width="242" height="20" uuid="d0d5943a-a227-4fe0-a365-b26e8892d7a4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[+595-992-746-116]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="119" width="555" height="28" uuid="bac5d901-bf86-4c5e-9cae-d8cf8ef5b09f"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="119" width="137" height="28" uuid="353a2c3b-76e7-463f-bec9-dc7dcbe0ab69"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre Del Producto:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="147" width="555" height="28" uuid="d998790d-1dd4-4604-8807-0413ac30f201"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="334" y="119" width="123" height="28" uuid="e6af798f-1c9c-4882-8939-a18d36c69f52"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad a Producir:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="147" width="145" height="28" uuid="78b63a0a-e337-4126-9bc9-4426c4206fe1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha De Elaboración:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="147" width="145" height="28" uuid="c4ad73b5-8c2c-496e-b571-28a9e1c5cdb6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha De Vencimiento:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="137" y="94" width="100" height="20" uuid="fbf208b8-c794-40d0-97ec-a8bcba3279b7"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idproduccion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="162" y="147" width="120" height="26" uuid="2450dab1-a09b-4bb9-a27a-9cec990e2c03"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_elaboracion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="469" y="147" width="85" height="29" uuid="d6a61588-14b1-4bf2-b7e0-32a9ac3071cd"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_vencimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="148" y="119" width="147" height="28" uuid="b3eaa1c8-51e8-44b3-ad12-e3277dfba512"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_receta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="469" y="119" width="85" height="28" uuid="f4f3c48c-ec12-4ae9-8995-7e6a6796ca44"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="0" y="6" width="148" height="86" uuid="fad3a0e9-d2f8-49ca-8128-62dd215a1202"/>
+				<imageExpression><![CDATA["./pasteleria.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="346" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="109" height="345" uuid="26b9cbc2-bed1-4294-8d7e-4da9af253404"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="109" y="0" width="135" height="345" uuid="eade2de9-bf08-4fb8-9915-f7880c99c4b8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="244" y="0" width="311" height="345" uuid="bdd94960-d11e-4d19-b829-e9512bfe2b92"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="109" y="0" width="135" height="20" uuid="a2fcc322-b07f-4022-83b8-4d920d1d3767"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="244" y="0" width="310" height="20" uuid="49f610c2-f2b8-4361-bf88-69baf92faa2a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="109" y="0" width="135" height="20" uuid="13b3c87f-32ae-43b7-9ed0-72bb321419ac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unidad De Medida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="245" y="0" width="310" height="20" uuid="e1d2be57-bf44-45e8-a936-e2af81c6a448"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ingredientes]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="0" width="109" height="20" uuid="2b603336-659a-4391-baba-5eb4e23cd282"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="109" height="21" uuid="152c8343-1768-43cd-acf2-0a95f8285b06"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="3" y="0" width="200" height="100" uuid="d43d1f5b-7064-4012-afd3-e675bebb82e6"/>
+				<subreportParameter name="cab">
+					<subreportParameterExpression><![CDATA[$P{cab}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[".\\DetProduccion.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

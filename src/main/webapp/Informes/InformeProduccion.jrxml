@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13d6bbcb-b1c4-4c1a-9c9d-3522505a0c1a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_desde_produccion" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_hasta_produccion" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="produc_informe" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    p.idproduccion,
+    p.fecha_elaboracion,
+    p.cantidad,
+    p.fecha_vencimiento,
+    p.estado_produccion,
+    e.emple_nombre,
+    r.nombre_receta
+FROM 
+    public.produccion p
+JOIN 
+    public.recetas r ON p.receta_id = r.idrecetas_productos
+JOIN 
+    public.empleados e ON p.empleados_id = e.idempleados
+WHERE 
+    p.fecha_elaboracion BETWEEN $P{fecha_desde_produccion} AND $P{fecha_hasta_produccion}
+    AND (
+        $P{produc_informe} IS NULL 
+        OR p.receta_id = $P{produc_informe}  
+    )
+and p.estado_produccion = 'Finalizado';]]>
+	</queryString>
+	<field name="idproduccion" class="java.lang.Integer"/>
+	<field name="fecha_elaboracion" class="java.sql.Date"/>
+	<field name="cantidad" class="java.lang.Integer"/>
+	<field name="fecha_vencimiento" class="java.sql.Date"/>
+	<field name="estado_produccion" class="java.lang.String"/>
+	<field name="emple_nombre" class="java.lang.String"/>
+	<field name="nombre_receta" class="java.lang.String"/>
+	<variable name="totalcantidad" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{cantidad}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="137" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="630" height="113" uuid="04246ca3-7b10-49c1-bb30-1d04fee04a2d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="292" y="113" width="135" height="21" uuid="0717308b-b177-47b3-b512-a72fc383a989"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="312" y="54" width="313" height="20" uuid="d7ebaee3-db1a-44ac-979f-2571461eb56e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[dulcesmimos24@gmail.com]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="113" width="46" height="21" uuid="7d2c7d79-f40b-4e77-a1f7-f5001a0fd25d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="631" y="0" width="171" height="113" uuid="43af9b0b-3992-4938-8c7d-b1c739b0ce56"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="312" y="32" width="312" height="20" uuid="d12a938c-5eb9-4623-8ba0-b652d85bc4d2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ypacarai - Paraguay]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="143" y="113" width="149" height="21" uuid="88f9ea4e-67f4-49dd-987f-2c9a08f9bce7"/>
+			</rectangle>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="630" y="0" width="171" height="113" uuid="3d7342b1-2948-4bb2-bd86-79a8147e47df"/>
+				<imageExpression><![CDATA["./pasteleria.jpg"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="631" y="113" width="171" height="21" uuid="3b4908de-db30-4a6f-9cc3-c359a6c9f717"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="288" height="113" uuid="202dcdef-9876-458d-a9c7-556791887b0b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Informe De Producción]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="46" y="113" width="97" height="21" uuid="9c4d0a73-6f8a-4f18-a10d-891bbe168473"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="427" y="113" width="111" height="21" uuid="5d5f271a-2643-437b-8100-1daf6041cc99"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="114" width="45" height="20" uuid="97695ff1-9c2e-414a-8200-5ee17eb3995c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="46" y="114" width="97" height="20" uuid="6feb9e9c-14ad-4243-855b-9fee61954839"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Elab.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="143" y="114" width="149" height="20" uuid="a8e5d959-7fc3-4f8a-9cd9-9bda8e98da15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Venc.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="114" width="135" height="20" uuid="26d49f41-241f-4af7-beab-d75fe3c86c49"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="427" y="114" width="111" height="20" uuid="92fdc28a-251b-4643-9717-9d9792e82405"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="632" y="114" width="170" height="20" uuid="54e14287-92af-4b6f-a3a8-4bb25eab3630"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad Producida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="10" width="312" height="20" uuid="29b5ebba-f240-4315-a6fa-c6ec68919aa4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fernanda Araoz]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="78" width="312" height="20" uuid="85817629-e151-4f52-a83c-fd1a9e62382a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[+595-992-746-116]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="538" y="113" width="92" height="21" uuid="d5398a89-dace-47e2-a1bd-7476e469205c"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="538" y="114" width="92" height="20" uuid="7ba72a06-0d24-41a7-9a9f-ffd73d0cde1d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="46" height="20" uuid="6fad4b78-da51-42e2-adea-709506d4af0e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idproduccion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement positionType="Float" x="46" y="0" width="97" height="20" uuid="d3671ad2-333d-4c2f-8f07-68fefcca00bd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_elaboracion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement positionType="Float" x="143" y="0" width="149" height="20" uuid="873f6ae4-ebd8-4424-9c6b-817312599548"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_vencimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="538" y="-1" width="93" height="20" uuid="ab4da29c-588f-490d-b24d-834c5405ae2e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado_produccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="429" y="0" width="109" height="20" uuid="c89200c0-0e84-4b7d-a08d-39a23dd6a685"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{emple_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="292" y="0" width="135" height="20" uuid="75b0367d-53dd-43db-8b75-d66b2155b085"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_receta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="632" y="0" width="168" height="20" uuid="67ac0036-bd3f-4d54-a211-0a5b3dbd309f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="442" y="34" width="188" height="20" uuid="829d6b15-9bc0-403a-af5f-b64ba233fd84"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad Total Producida:]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="674" y="34" width="100" height="20" uuid="f4091f59-5d41-4e2b-bb67-a5160b19751c"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalcantidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

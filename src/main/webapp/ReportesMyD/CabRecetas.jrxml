@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="758f97c1-a839-4107-8134-db603a6a34a5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cab" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\ferna\\OneDrive\\Documentos\\NetBeansProjects\\ecommerce\\src\\main\\webapp\\ReportesMyD\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT idrecetas_productos,
+    recetaspro_estado,
+    productos_id,
+    empleados_id,
+    preparacion,
+    nombre_receta
+FROM recetas
+WHERE idrecetas_productos = $P{cab}
+GROUP BY 
+    idrecetas_productos,
+    recetaspro_estado,
+    productos_id,
+    empleados_id,
+    preparacion,
+    nombre_receta;]]>
+	</queryString>
+	<field name="idrecetas_productos" class="java.lang.Integer"/>
+	<field name="recetaspro_estado" class="java.lang.String"/>
+	<field name="productos_id" class="java.lang.Integer"/>
+	<field name="empleados_id" class="java.lang.Integer"/>
+	<field name="preparacion" class="java.lang.String"/>
+	<field name="nombre_receta" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="155" splitType="Stretch">
+			<rectangle>
+				<reportElement x="397" y="1" width="158" height="126" uuid="2ced9710-2264-4ec6-a247-a257e0391b11"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="397" y="0" width="158" height="127" uuid="35f3dfe1-e085-4a67-bf3c-ab5a3bf371a9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMPROBANTE INTERNO]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="1" width="396" height="126" uuid="470765a7-d9cd-423a-b610-bcfb7f13dfa2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="149" y="81" width="242" height="20" uuid="f3bfd73a-0add-465e-8fd0-9cfd21f51c88"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[+595-992-746-116]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="33" width="242" height="20" uuid="edc9dd7a-8d1a-4c81-b9e4-99575a1eaa75"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Ypacarai - Paraguay]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="9" width="242" height="20" uuid="38978d5f-5531-405c-a368-f9a4ad6ceafb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Dulces Mimos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="56" width="242" height="20" uuid="d830a520-51b4-4a4a-815b-0315ccc39f59"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[dulcesmimos24@gmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="98" width="81" height="20" uuid="6a2c087e-7155-4c75-879d-70e0aff4ac72"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° De Receta]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="127" width="554" height="28" uuid="aa7ed7bb-fc94-447f-80cc-6f8ce7a06d18"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="127" width="148" height="21" uuid="71497b2b-4e82-49a4-8cff-6ecf7fa0ce40"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre De La Receta:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="149" y="127" width="138" height="20" uuid="66287486-e425-414b-ba93-80a6f10d077a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_receta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="98" width="35" height="20" uuid="af8e055a-5fcd-4f0c-892a-c41d180e28d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idrecetas_productos}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="4" y="7" width="145" height="89" uuid="1468765a-d91d-4aa3-b3de-c4ec685b2801"/>
+				<imageExpression><![CDATA["./pasteleria.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="384" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="0" width="109" height="379" uuid="492ab150-f784-400e-b026-8751806941a9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="0" width="135" height="379" uuid="83471ade-eaeb-4591-924b-63bc957b926a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="245" y="0" width="310" height="379" uuid="f87dd188-2679-4e86-ac20-c2a803e434a8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="0" width="135" height="20" uuid="fb6df5b0-2c50-4bbd-b8e0-4b1f70e561e1"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="245" y="0" width="310" height="20" uuid="5a206646-dd91-4ae0-b639-606b54f99b50"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="110" y="0" width="135" height="20" uuid="9c3b9248-f054-4cc4-b049-da0463118e2c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unidad De Medida]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="0" width="109" height="20" uuid="1c336278-c0d3-42a9-a590-05efd3b73cc0"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="112" height="20" uuid="96417d64-7bac-4656-b2e1-0ec06822c5e3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="245" y="0" width="310" height="20" uuid="1561ded4-9b6f-4c58-b6ac-bb9e9178b73e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ingredientes]]></text>
+			</staticText>
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="4" y="0" width="200" height="100" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="d33dd177-a74a-45ec-8af2-6254832ddb0f"/>
+				<subreportParameter name="cab">
+					<subreportParameterExpression><![CDATA[$P{cab}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[".\\DetRecetas.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="59" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

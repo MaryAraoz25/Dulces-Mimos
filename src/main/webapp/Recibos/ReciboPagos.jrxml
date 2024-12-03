@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="563" pageHeight="595" orientation="Landscape" columnWidth="523" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8396c6db-7eff-431d-b8c4-050c9b656c02">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="detalle" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\ferna\\OneDrive\\Documentos\\NetBeansProjects\\ecommerce\\src\\main\\webapp\\Recibos\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    p.id AS id_pago,
+    p.fecha_pago,
+    p.total_pagar,
+    p.estado_pago,
+    pr.prov_nombre AS nombre_proveedor,
+    mp.metpag_nombre AS nombre_metodo_pago,
+    e.emple_nombre || ' ' || e.emple_apellido AS nombre_empleado,
+    p.num_dias,
+    '001-002-' || LPAD(p.compras_id::text, 6, '0') AS idcompra_format -- Asegúrate de que p.id_compra exista
+FROM 
+    public.pagos p
+JOIN 
+    public.proveedores pr ON p.proveedor_id = pr.idproveedores
+JOIN 
+    public.metodos_pago mp ON p.met_pago = mp.idmetodos_pago
+JOIN 
+    public.empleados e ON p.empleado_id = e.idempleados
+WHERE 
+    p.id = $P{detalle};]]>
+	</queryString>
+	<field name="id_pago" class="java.lang.Integer"/>
+	<field name="fecha_pago" class="java.sql.Date"/>
+	<field name="total_pagar" class="java.lang.Integer"/>
+	<field name="estado_pago" class="java.lang.String"/>
+	<field name="nombre_proveedor" class="java.lang.String"/>
+	<field name="nombre_metodo_pago" class="java.lang.String"/>
+	<field name="nombre_empleado" class="java.lang.String"/>
+	<field name="num_dias" class="java.lang.Integer"/>
+	<field name="idcompra_format" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="113" splitType="Stretch">
+			<staticText>
+				<reportElement x="8" y="19" width="57" height="20" uuid="10e16b77-1183-4e5b-ac14-341887dcf95a"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° REF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="49" width="227" height="62" uuid="c8ca2929-5f9a-42ff-88c9-273bb9836598"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comprobante Interno De Pago a Proveedor]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="82" y="19" width="100" height="20" uuid="c37120d8-7e28-4450-9584-0efd62b66e75"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_pago}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="270" y="71" width="100" height="20" uuid="aa9dd8cf-df6e-4728-a353-898533b43b37"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_pagar}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="0" y="0" width="522" height="111" uuid="e1c7dec9-39ac-45e8-af5a-2adc85642fad"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<image hAlign="Center" vAlign="Middle">
+					<reportElement x="394" y="5" width="128" height="106" uuid="4af0f684-ecb7-4168-adad-1ebd2aa1db88"/>
+					<imageExpression><![CDATA["./pasteleria.jpg"]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="129" splitType="Stretch">
+			<staticText>
+				<reportElement x="8" y="38" width="158" height="20" uuid="57d51829-7bd9-4c01-8a9d-1625ea710b65"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pagamos a Proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="134" y="96" width="220" height="20" uuid="6a449274-4cdf-4324-b3d3-0f0970c0263c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Pago de la Factura Crédito N° ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="67" width="83" height="20" uuid="c4ad661d-76bd-432f-893c-e1f0db8a1431"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[la suma de Guaraníes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="96" width="126" height="20" uuid="412549c5-5260-4e73-ab68-73e3c706bb43"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[en concepto de]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="182" y="38" width="100" height="20" uuid="657ba2d5-1d8a-4f8b-addb-e23007f86ada"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="96" width="152" height="20" uuid="42402878-5527-4529-b56c-eadd4a641b7d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idcompra_format}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="8" y="7" width="504" height="20" uuid="2553b066-5c7b-44a2-bb2a-6d29cb7c973f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd 'de' MMMM 'del' yyyy", new java.util.Locale("es", "ES")).format($F{fecha_pago})]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="0" y="0" width="522" height="126" uuid="a2ed692c-1571-4cf2-aa8a-28697d7ba36a"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<subreport>
+					<reportElement x="66" y="9" width="378" height="29" uuid="24a38408-f22f-4f37-8c6e-9d9f69045481"/>
+					<subreportParameter name="num">
+						<subreportParameterExpression><![CDATA[$F{total_pagar}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "convertirpagos.jasper"]]></subreportExpression>
+				</subreport>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

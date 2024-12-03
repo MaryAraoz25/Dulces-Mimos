@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dbaa9ea8-2f1b-4f0c-a8f2-c56e5c5498ee">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cab" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    dv.detventas_cantidad,
+    dv.detventas_preciounitario,
+    dv.ventas_id,
+    dv.productos_id,
+    p.pro_nombre,
+    p.impuesto
+FROM 
+    public.detalle_ventas dv
+JOIN 
+    public.productos p ON dv.productos_id = p.idproductos
+WHERE 
+    dv.ventas_id = $P{cab};]]>
+	</queryString>
+	<field name="detventas_cantidad" class="java.lang.Integer"/>
+	<field name="detventas_preciounitario" class="java.lang.Integer"/>
+	<field name="ventas_id" class="java.lang.Integer"/>
+	<field name="productos_id" class="java.lang.Integer"/>
+	<field name="pro_nombre" class="java.lang.String"/>
+	<field name="impuesto" class="java.lang.String"/>
+	<variable name="resultado" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{detventas_cantidad}*$F{detventas_preciounitario}]]></variableExpression>
+	</variable>
+	<variable name="subtotal10" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{resultado}]]></variableExpression>
+	</variable>
+	<variable name="iva10" class="java.lang.Integer">
+		<variableExpression><![CDATA[$V{subtotal10}/11]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="43" height="20" isPrintWhenDetailOverflows="true" uuid="606cdff8-5f95-4f13-9824-09c328aab7c1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detventas_cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="0" width="148" height="20" uuid="62594c09-6e91-4345-aae7-9e514c7017e2"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pro_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="316" y="0" width="61" height="20" uuid="012eabcf-c63c-4e06-8d58-6ec624305418"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detventas_preciounitario}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="474" y="0" width="64" height="20" uuid="1ac7d59d-2664-4ba1-88bc-8a0e9956f1c8"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{resultado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="252" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

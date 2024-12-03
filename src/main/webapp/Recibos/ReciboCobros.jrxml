@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="529" pageHeight="595" orientation="Landscape" columnWidth="489" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9cc6b411-147b-45b1-9d0e-24b4df447778">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="detalle" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\ferna\\OneDrive\\Documentos\\NetBeansProjects\\ecommerce\\src\\main\\webapp\\Recibos\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    c.idcobro,
+    '001-002-' || LPAD(v.idventas::text, 6, '0') AS idventa_format,
+    cl.cli_nombre || ' ' || cl.cli_apellido AS nombre_cliente,
+    cl.cli_cedula AS cedula_cliente,
+    mp.metpag_nombre AS nombre_metodo_pago,
+    e.emple_nombre || ' ' || e.emple_apellido AS nombre_empleado,
+    c.fecha_cobro,
+    c.total_cobro,
+    c.estado_cobro
+FROM 
+    public.cobros c
+JOIN 
+    public.clientes cl ON c.cliente_id = cl.idclientes
+JOIN 
+    public.metodos_pago mp ON c.met_pag = mp.idmetodos_pago
+JOIN 
+    public.empleados e ON c.empleado_id = e.idempleados
+JOIN 
+    public.ventas v ON c.venta_id = v.idventas
+WHERE 
+    c.idcobro = $P{detalle};]]>
+	</queryString>
+	<field name="idcobro" class="java.lang.Integer"/>
+	<field name="idventa_format" class="java.lang.String"/>
+	<field name="nombre_cliente" class="java.lang.String"/>
+	<field name="cedula_cliente" class="java.lang.String"/>
+	<field name="nombre_metodo_pago" class="java.lang.String"/>
+	<field name="nombre_empleado" class="java.lang.String"/>
+	<field name="fecha_cobro" class="java.sql.Date"/>
+	<field name="total_cobro" class="java.lang.Integer"/>
+	<field name="estado_cobro" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="93" splitType="Stretch">
+			<frame>
+				<reportElement x="-1" y="0" width="490" height="92" forecolor="#000000" backcolor="#000000" uuid="50ee04d8-4ad5-436b-8cb7-ce7f03227add"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textField>
+					<reportElement x="75" y="9" width="60" height="20" uuid="46e5428d-75ae-4a46-83e1-ff2ed4a534e6"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="16"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{idcobro}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="10" y="39" width="126" height="20" uuid="573bc67f-f887-4787-8564-241660b7bb4d"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Recibo De Dinero ]]></text>
+				</staticText>
+				<textField pattern="#,##0">
+					<reportElement x="153" y="39" width="100" height="20" uuid="7947fe86-2c92-47ea-83e0-8f47fa3c0e4b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="16"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{total_cobro}]]></textFieldExpression>
+				</textField>
+				<image hAlign="Center" vAlign="Middle">
+					<reportElement x="360" y="3" width="128" height="89" uuid="6f8fa539-16c9-4ac5-96ee-380184480c63"/>
+					<imageExpression><![CDATA["./pasteleria.jpg"]]></imageExpression>
+				</image>
+			</frame>
+			<staticText>
+				<reportElement x="10" y="9" width="55" height="20" uuid="cffb69db-8cc7-427b-b7b8-86b07e921738"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° REF]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="164" splitType="Stretch">
+			<frame>
+				<reportElement x="-1" y="-1" width="490" height="163" forecolor="#000000" backcolor="#000000" uuid="1c4fba6f-a472-44e4-ae2a-f7b580274155"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textField>
+					<reportElement x="7" y="14" width="427" height="20" uuid="54458a2a-f496-429f-869c-2aca7dc79842"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="16"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd 'de' MMMM 'del' yyyy", new java.util.Locale("es", "ES")).format($F{fecha_cobro})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="368" y="130" width="106" height="20" uuid="7dfad612-f279-49cd-9319-dfa9ea866aaf"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="16"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{idventa_format}]]></textFieldExpression>
+				</textField>
+				<subreport>
+					<reportElement x="94" y="14" width="200" height="100" uuid="e9124eb2-c1f1-43a6-b169-1f0e3a50b4d3"/>
+					<subreportParameter name="num">
+						<subreportParameterExpression><![CDATA[$F{total_cobro}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "convertircobros.jasper"]]></subreportExpression>
+				</subreport>
+			</frame>
+			<staticText>
+				<reportElement x="10" y="54" width="109" height="20" uuid="e1cfbaf1-1b79-45ed-8dfa-04722eb22a5c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recibí(mos) de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="129" width="220" height="20" uuid="628dc26f-8c6c-40cc-8cc4-cbbd995f3f87"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cobro de la Factura Crédito N° ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="135" y="54" width="299" height="20" uuid="57cf1949-f0c4-4411-8b29-5a0eb83e3074"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_cliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="94" width="83" height="20" uuid="b852e0ab-adb4-46dc-a3d0-e7593ea48fd6"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[la suma de Guaraníes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="129" width="126" height="20" uuid="70ae7088-2bbd-48a8-b67a-c9b5b22fa4ea"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[en concepto de]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b4a2da57-5088-4732-a934-1c20a7060263">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_desde" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_hasta" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="prov_informe" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    c.idcompras,
+    c.compras_fecha,
+    c.compras_estado,
+    e.emple_nombre,  
+    p.prov_nombre,
+    c.total_compra
+FROM 
+    compras c
+JOIN 
+    proveedores p ON c.proveedores_id = p.idproveedores
+JOIN 
+    empleados e ON c.empleados_id = e.idempleados  
+WHERE 
+    c.compras_fecha BETWEEN $P{fecha_desde} AND $P{fecha_hasta}
+    AND ($P{prov_informe} IS NULL OR c.proveedores_id = $P{prov_informe})
+AND c.compras_estado = 'Finalizado';]]>
+	</queryString>
+	<field name="idcompras" class="java.lang.Integer"/>
+	<field name="compras_fecha" class="java.sql.Date"/>
+	<field name="compras_estado" class="java.lang.String"/>
+	<field name="emple_nombre" class="java.lang.String"/>
+	<field name="prov_nombre" class="java.lang.String"/>
+	<field name="total_compra" class="java.lang.Integer"/>
+	<variable name="total_compras" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_compra}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="137" splitType="Stretch">
+			<rectangle>
+				<reportElement x="454" y="114" width="179" height="21" uuid="6ba25619-28f5-4d02-8ea7-328e6ea45cd9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="630" height="113" uuid="1ea1ecd3-acb4-4895-9652-b515de950334"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="631" y="0" width="171" height="115" uuid="993a1bc8-05bd-41a6-8d29-82451eb71832"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="319" y="114" width="135" height="21" uuid="425adb30-f42d-4856-866b-cc472b5bcda6"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="302" y="33" width="312" height="20" uuid="66f5c528-5043-4779-bd41-bfe816b8ff92"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ypacarai - Paraguay]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="302" y="79" width="312" height="20" uuid="59ad76b3-ef42-4857-b71f-db3984f11f03"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[+595-992-746-116]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="631" y="114" width="171" height="21" uuid="f3195180-24a7-47b3-9e32-02a3d41c4fc9"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="302" y="10" width="312" height="20" uuid="2e8042dc-7e75-4128-93a4-0b00ec15ed86"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fernanda Araoz]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="-1" width="288" height="113" uuid="d1ecba83-b154-4eb9-8ba1-654205d92c55"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Informes De Compras]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="198" y="114" width="121" height="21" uuid="374a432a-4771-4808-9cc0-d85669d436e1"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="47" y="114" width="151" height="21" uuid="5b36c2e3-0964-49a2-9704-9146125a1865"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="302" y="56" width="313" height="20" uuid="3f1cbcab-7cfe-4e58-b47f-124dfb0a26c5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[dulcesmimos24@gmail.com]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="114" width="46" height="21" uuid="37a18a18-ceff-4f45-96bd-969aeb4b35f8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="115" width="45" height="20" uuid="15adfed0-e5f4-482f-8c88-9a20dc5010af"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="46" y="115" width="151" height="20" uuid="be7d9740-9224-4a08-b901-9fbd4cf1e3da"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="115" width="121" height="20" uuid="7a2b72d6-95aa-4278-b9e2-78e191a4c5be"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="114" width="135" height="20" uuid="db2c9fe5-3bf8-4aec-8df0-729c01161251"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="452" y="114" width="178" height="20" uuid="62756c47-baa3-4b2a-8386-fd9ddf995509"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="630" y="115" width="170" height="20" uuid="965c5ee9-ab31-44df-8e94-aff2c4636ffb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Compra]]></text>
+			</staticText>
+			<image hAlign="Right">
+				<reportElement x="630" y="0" width="170" height="114" uuid="46b2d942-3c51-4781-a769-eef227ea7aa5"/>
+				<imageExpression><![CDATA["./pasteleria.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement positionType="Float" x="2" y="0" width="45" height="20" uuid="8375ddd5-4140-43ff-8f0c-92b53899363d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idcompras}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement positionType="Float" x="47" y="0" width="151" height="20" uuid="e8f42275-27d4-4742-bfdd-ae1bf81e04b1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{compras_fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="454" y="0" width="176" height="20" uuid="c066fddf-e80b-430c-98ab-80ddd4370330"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{prov_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="319" y="0" width="135" height="20" uuid="4ed7d025-7715-4595-969b-eff9cb4f19c9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{emple_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="197" y="0" width="122" height="20" uuid="2eefd5bb-5982-4f99-b432-cc66c2859ffa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{compras_estado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement positionType="Float" x="630" y="0" width="170" height="20" uuid="c7502051-1fba-4ce0-a006-73367a74d738"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_compra}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

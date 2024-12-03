@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="246ffbf1-5292-4c63-89df-cd5e4fe16f5a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha_desde_pagos" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha_hasta_pagos" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    p.id,
+    p.fecha_pago,
+    p.estado_pago,
+    CONCAT(e.emple_nombre, ' ', e.emple_apellido) AS empleado_nombre,
+    pr.prov_nombre,
+    m.metpag_nombre,
+    p.num_dias,
+    p.total_pagar
+FROM 
+    pagos p
+JOIN 
+    empleados e ON p.empleado_id = e.idempleados
+JOIN 
+    proveedores pr ON p.proveedor_id = pr.idproveedores
+JOIN 
+    metodos_pago m ON p.met_pago = m.idmetodos_pago
+WHERE 
+    p.fecha_pago BETWEEN $P{fecha_desde_pagos} AND $P{fecha_hasta_pagos};]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="fecha_pago" class="java.sql.Date"/>
+	<field name="estado_pago" class="java.lang.String"/>
+	<field name="empleado_nombre" class="java.lang.String"/>
+	<field name="prov_nombre" class="java.lang.String"/>
+	<field name="metpag_nombre" class="java.lang.String"/>
+	<field name="num_dias" class="java.lang.Integer"/>
+	<field name="total_pagar" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="137" splitType="Stretch">
+			<rectangle>
+				<reportElement x="144" y="113" width="105" height="21" uuid="e965085d-8d54-4f66-b7e7-5f8d28d065f6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="113" width="46" height="21" uuid="357f0646-2acb-4002-a50a-12a9129e0d25"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="631" y="0" width="171" height="113" uuid="7969bdfa-8c1a-49db-b2e6-40392d876ea6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="249" y="113" width="134" height="21" uuid="ebdb232c-f6ff-4585-8ca2-a9a6c4bab6f2"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="384" y="113" width="143" height="21" uuid="408554d7-1900-4a60-8d5b-ec727e2d3c99"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="630" height="113" uuid="d3c61805-93c9-4c0e-be5d-85a5e6fdc8a4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="46" y="113" width="98" height="21" uuid="9d1e27e1-cad4-4de8-8464-cb7372fdd100"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="312" y="37" width="312" height="20" uuid="cf2ba62a-6b86-4151-888f-b8d1634a22b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ypacarai - Paraguay]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="83" width="312" height="20" uuid="9eeb7540-021b-4457-8f04-91e6380b38ed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[+595-992-746-116]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="14" width="312" height="20" uuid="4a1724a2-71b1-4182-8265-78975b03a78a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fernanda Araoz]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="60" width="313" height="20" uuid="3ada4b58-a0ec-4148-acb4-71e4369ef3cf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[dulcesmimos24@gmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="288" height="113" uuid="f4ab58fe-97c3-49a8-ba37-350b6225283a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Informes De Pagos]]></text>
+			</staticText>
+			<image>
+				<reportElement x="654" y="14" width="128" height="99" uuid="2bfaba79-cf3b-4e06-935d-f50517bf336d"/>
+				<imageExpression><![CDATA["./pasteleria.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="1" y="114" width="45" height="20" uuid="df50465d-bda6-40ee-b7ea-efb96fa707fd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="46" y="114" width="98" height="20" uuid="afbb2ae7-7588-4e89-adaa-cf228c489761"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="144" y="114" width="105" height="20" uuid="ae2ee44e-5c40-4e0b-b5e2-b770b1c3c683"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="249" y="114" width="135" height="20" uuid="badee593-e8b5-49f4-97ef-87b6a1ede02a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Método De Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="383" y="113" width="144" height="20" uuid="86c7e61e-2b5a-4aa1-bdb8-59b7bfe942bd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado Del Pago]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="527" y="113" width="97" height="21" uuid="c9179c4a-bb95-45e5-98cd-0fa63d1baf32"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="527" y="113" width="98" height="20" uuid="75880cb1-479d-4673-b2a2-065b8250e332"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empleado]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="625" y="113" width="89" height="21" uuid="a166eae9-3022-48de-96d5-7fbeffc67f25"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="714" y="113" width="88" height="21" uuid="b127888e-c61b-438d-a73c-6e5282ef8039"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="625" y="114" width="89" height="20" uuid="1f570ba0-d7d9-4a51-a748-f4dee5c66b87"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Plazo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="714" y="114" width="88" height="20" uuid="a9692559-87f4-4443-bef0-80b90429756c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="4" width="45" height="20" uuid="4f9686b4-79f4-4457-8bed-b609080ad3e9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="46" y="4" width="98" height="20" uuid="6be9d947-8e48-42c2-993d-73772807694e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_pago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="384" y="4" width="143" height="20" uuid="8deb75fc-d6f4-49f2-b053-f2369baa2220"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado_pago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="531" y="4" width="93" height="20" uuid="908f2ae9-8b23-4088-af4d-c53bf20268b1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empleado_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="4" width="105" height="20" uuid="6a6a3e9a-cf48-41be-9082-81fba02fa43e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{prov_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="249" y="4" width="134" height="20" uuid="1653163b-a12e-4be8-be05-a2538f4b03f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{metpag_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="624" y="4" width="90" height="20" uuid="2a2270ed-2e32-4ab7-82f2-9c066f47e257"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num_dias}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="714" y="4" width="88" height="20" uuid="438d387e-6801-44e7-b4e2-1b9693a9b6d5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_pagar}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

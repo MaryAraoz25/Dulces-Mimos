@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="243649ee-3f11-40ab-8483-0d6160ff3328">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cab" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\ferna\\OneDrive\\Documentos\\NetBeansProjects\\ecommerce\\src\\main\\webapp\\ReportesMyD\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    dc.detcompras_cantidad,
+    dc.detcompras_preciounitario,
+    dc.compra_id,
+    dc.ingredientes_id,
+    i.ingre_nombre,
+    i.impuesto
+FROM 
+    public.detalle_compras dc
+JOIN 
+    public.ingredientes i ON dc.ingredientes_id = i.idingredientes
+WHERE 
+    dc.compra_id = $P{cab};]]>
+	</queryString>
+	<field name="detcompras_cantidad" class="java.lang.Integer"/>
+	<field name="detcompras_preciounitario" class="java.lang.Integer"/>
+	<field name="compra_id" class="java.lang.Integer"/>
+	<field name="ingredientes_id" class="java.lang.Integer"/>
+	<field name="ingre_nombre" class="java.lang.String"/>
+	<field name="impuesto" class="java.lang.String"/>
+	<variable name="resultado5" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{impuesto}.equals('5') ? $F{detcompras_cantidad} * $F{detcompras_preciounitario} : null]]></variableExpression>
+	</variable>
+	<variable name="resultado10" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{impuesto}.equals('10') ? $F{detcompras_cantidad} * $F{detcompras_preciounitario} : null]]></variableExpression>
+	</variable>
+	<variable name="subtotal5" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{resultado5}]]></variableExpression>
+	</variable>
+	<variable name="subtotal10" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{resultado10}]]></variableExpression>
+	</variable>
+	<variable name="resultado0" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{impuesto}.equals('0') ? $F{detcompras_cantidad} * $F{detcompras_preciounitario} : null]]></variableExpression>
+	</variable>
+	<variable name="subtotal0" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{resultado0}]]></variableExpression>
+	</variable>
+	<variable name="totalcompra" class="java.lang.Integer">
+		<variableExpression><![CDATA[($V{subtotal5} == null ? 0 : $V{subtotal5}) + ($V{subtotal10} == null ? 0 : $V{subtotal10}) + ($V{subtotal0} == null ? 0 : $V{subtotal0})]]></variableExpression>
+	</variable>
+	<variable name="iva5" class="java.lang.Integer">
+		<variableExpression><![CDATA[($V{subtotal5} == null ? 0 : $V{subtotal5}) / 21]]></variableExpression>
+	</variable>
+	<variable name="iva10" class="java.lang.Integer">
+		<variableExpression><![CDATA[($V{subtotal10} == null ? 0 : $V{subtotal10}) / 11]]></variableExpression>
+	</variable>
+	<variable name="total_iva" class="java.lang.Integer">
+		<variableExpression><![CDATA[($V{iva5} == null ? 0 : $V{iva5}) + ($V{iva10} == null ? 0 : $V{iva10})]]></variableExpression>
+	</variable>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<pageFooter>
+		<band height="314" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="396" y="37" width="118" height="33" isRemoveLineWhenBlank="true" uuid="cabba1a2-a610-4dae-9189-39a534e92ba4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalcompra}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="472" y="8" width="55" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="4d13e756-cd1f-479e-9af0-af6a94668895"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{subtotal10}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="414" y="8" width="53" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="57f19b64-fdf1-45da-a08f-c3379446c096"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{subtotal5}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="363" y="8" width="51" height="20" isRemoveLineWhenBlank="true" uuid="56d1c1b6-6b2c-415e-96f7-31ce0c36bde6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{subtotal0}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="290" y="44" width="70" height="20" isRemoveLineWhenBlank="true" uuid="94f59135-a56d-40c7-a9bc-41bb4c29e5e6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{total_iva}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="159" y="44" width="59" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="9e7e95a5-377b-420d-9cc0-331c53f842d9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{iva10}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="51" y="44" width="59" height="20" isRemoveLineWhenBlank="true" uuid="2daeca28-65c0-43ed-b0d1-e74feca978b8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{iva5}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="-3" y="7" width="315" height="38" uuid="f285d526-2976-4fef-8da3-c51f072ff8ff"/>
+				<subreportParameter name="num">
+					<subreportParameterExpression><![CDATA[$V{totalcompra}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[".\\convertircompras.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageFooter>
+</jasperReport>
