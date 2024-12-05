@@ -33,28 +33,30 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #ff007b; color: white;">
                     <h5 class="mb-0">Lista De Compras</h5>
-                    
+
                 </div>
                 <div class="search-bar" style="background-color: #ff007b; color: white; padding: 10px;">
                     <input type="text" class="form-control" placeholder="Buscar Compras" style="color: #000000; background-color: white;" id="buscador" name="buscador">
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-hover">
-                        <thead class="text-center">
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Tipo De Pago</th>
-                                <th scope="col">Proveedor</th>
-                                <th scope="col">Total Compra</th>
-                                <th scope="col">Acción</th>
-                            </tr>
-                        </thead>
-                        <tbody id="resultadocompras">
-                            <!-- Las compras se cargarán dinámicamente aquí -->
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Tipo De Pago</th>
+                                    <th scope="col">Proveedor</th>
+                                    <th scope="col">Total Compra</th>
+                                    <th scope="col">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultadocompras">
+                                <!-- Las compras se cargarán dinámicamente aquí -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,16 +84,16 @@
 </div>
 <script>
     $(document).ready(function () {
-    mostrardetalles();
-invalidChars = /[><"'()]/;
-    function preventInvalidInput(event) {
-        input = $(this).val();
-        if (invalidChars.test(input)) {
-            $(this).val(input.replace(invalidChars, ''));
+        mostrardetalles();
+        invalidChars = /[><"'()]/;
+        function preventInvalidInput(event) {
+            input = $(this).val();
+            if (invalidChars.test(input)) {
+                $(this).val(input.replace(invalidChars, ''));
+            }
         }
-    }
-    $("#buscador").on("input", preventInvalidInput);
-});
+        $("#buscador").on("input", preventInvalidInput);
+    });
     function mostrardetalles() {
         $.ajax({
             data: {listar: 'mostrarcompras'},
@@ -117,17 +119,17 @@ invalidChars = /[><"'()]/;
         });
     });
     $('#buscador').on('keyup', function () {
-        buscador = $(this).val().trim(); 
+        buscador = $(this).val().trim();
 
         $.ajax({
-            data: {listar: 'buscador', buscador: buscador}, 
-            url: 'JSP/Compras.jsp', 
-            type: 'post', 
+            data: {listar: 'buscador', buscador: buscador},
+            url: 'JSP/Compras.jsp',
+            type: 'post',
             success: function (response) {
                 $("#resultadocompras").html(response);
             },
             error: function (xhr, status, error) {
-                console.error("Error en la solicitud AJAX: " + error); 
+                console.error("Error en la solicitud AJAX: " + error);
             }
         });
     });

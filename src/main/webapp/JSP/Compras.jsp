@@ -133,7 +133,7 @@
                                         + "VALUES (" + detcompras_cantidad + ", " + detcompras_preciounitario + ", " + idCompra + ", " + ingredientes_id + ", '" + descripcionUnidadMedida + "')";
                                 int rowsDetalle = st.executeUpdate(insertDetalleSQL);
                                 if (rowsDetalle > 0) {
-                                    out.println("<div class='alert alert-success' role='alert'>Detalle insertado correctamente en la compra ID: " + idCompra + "</div>");
+                                    //out.println("<div class='alert alert-success' role='alert'>Detalle insertado correctamente en la compra ID: " + idCompra + "</div>");
                                 } else {
                                     out.println("<div class='alert alert-danger' role='alert'>Error al insertar el detalle</div>");
                                 }
@@ -155,14 +155,14 @@
                             try (ResultSet generatedKeys = st.getGeneratedKeys()) {
                                 if (generatedKeys.next()) {
                                     int idCompra = generatedKeys.getInt(1);
-                                    out.println("<div class='alert alert-success' role='alert'>ID Compra generada: " + idCompra + "</div>");
+                                    //out.println("<div class='alert alert-success' role='alert'>ID Compra generada: " + idCompra + "</div>");
 
                                     // Insertar detalle de compras
                                     String insertDetalleSQL = "INSERT INTO detalle_compras (detcompras_cantidad, detcompras_preciounitario, compra_id, ingredientes_id, unidad_medida) "
                                             + "VALUES (" + detcompras_cantidad + ", " + detcompras_preciounitario + ", " + idCompra + ", " + ingredientes_id + ", '" + descripcionUnidadMedida + "')";
                                     int rowsDetalle = st.executeUpdate(insertDetalleSQL);
                                     if (rowsDetalle > 0) {
-                                        out.println("<div class='alert alert-success' role='alert'>Detalle insertado correctamente en la compra ID: " + idCompra + "</div>");
+                                        //out.println("<div class='alert alert-success' role='alert'>Detalle insertado correctamente en la compra ID: " + idCompra + "</div>");
                                     } else {
                                         out.println("<div class='alert alert-danger' role='alert'>Error al insertar el detalle</div>");
                                     }

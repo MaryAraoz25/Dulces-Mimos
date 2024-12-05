@@ -194,7 +194,7 @@
                     $("#mensaje").fadeOut();
                 }, 3000);
                 return;
-            } else if (usu_contraseña.length < 8 || usu_contraseña.length > 10) {
+            }else if (usu_contraseña.length < 8 || usu_contraseña.length > 10) {
                 $("#mensaje").html("<div class='alert alert-danger' role='alert'>La contraseña debe tener entre 8 y 10 caracteres.</div>");
                 $("#mensaje").fadeIn();
                 setTimeout(function () {

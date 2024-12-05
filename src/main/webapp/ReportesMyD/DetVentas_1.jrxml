@@ -88,7 +88,7 @@ WHERE
 				<textFieldExpression><![CDATA[$V{subtotal10}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="-19" y="-7" width="331" height="44" uuid="b322abf0-0268-423d-868a-a7da3e1e2efb"/>
+				<reportElement x="-21" y="-7" width="331" height="44" uuid="b322abf0-0268-423d-868a-a7da3e1e2efb"/>
 				<subreportParameter name="num">
 					<subreportParameterExpression><![CDATA[$V{subtotal10}]]></subreportParameterExpression>
 				</subreportParameter>

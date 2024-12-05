@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="529" pageHeight="595" orientation="Landscape" columnWidth="489" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9cc6b411-147b-45b1-9d0e-24b4df447778">
-	<property name="ireport.zoom" value="1.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="537" pageHeight="595" orientation="Landscape" columnWidth="497" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9cc6b411-147b-45b1-9d0e-24b4df447778">
+	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="detalle" class="java.lang.Integer">
@@ -48,7 +48,7 @@ WHERE
 	<title>
 		<band height="93" splitType="Stretch">
 			<frame>
-				<reportElement x="-1" y="0" width="490" height="92" forecolor="#000000" backcolor="#000000" uuid="50ee04d8-4ad5-436b-8cb7-ce7f03227add"/>
+				<reportElement x="-1" y="0" width="498" height="92" forecolor="#000000" backcolor="#000000" uuid="50ee04d8-4ad5-436b-8cb7-ce7f03227add"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -78,7 +78,7 @@ WHERE
 					<textFieldExpression><![CDATA[$F{total_cobro}]]></textFieldExpression>
 				</textField>
 				<image hAlign="Center" vAlign="Middle">
-					<reportElement x="360" y="3" width="128" height="89" uuid="6f8fa539-16c9-4ac5-96ee-380184480c63"/>
+					<reportElement x="370" y="3" width="128" height="89" uuid="6f8fa539-16c9-4ac5-96ee-380184480c63"/>
 					<imageExpression><![CDATA["./pasteleria.jpg"]]></imageExpression>
 				</image>
 			</frame>
@@ -100,7 +100,7 @@ WHERE
 	<detail>
 		<band height="164" splitType="Stretch">
 			<frame>
-				<reportElement x="-1" y="-1" width="490" height="163" forecolor="#000000" backcolor="#000000" uuid="1c4fba6f-a472-44e4-ae2a-f7b580274155"/>
+				<reportElement x="-1" y="-1" width="498" height="163" forecolor="#000000" backcolor="#000000" uuid="1c4fba6f-a472-44e4-ae2a-f7b580274155"/>
 				<box>
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -123,7 +123,7 @@ WHERE
 					<textFieldExpression><![CDATA[$F{idventa_format}]]></textFieldExpression>
 				</textField>
 				<subreport>
-					<reportElement x="94" y="14" width="200" height="100" uuid="e9124eb2-c1f1-43a6-b169-1f0e3a50b4d3"/>
+					<reportElement x="88" y="12" width="200" height="30" uuid="e9124eb2-c1f1-43a6-b169-1f0e3a50b4d3"/>
 					<subreportParameter name="num">
 						<subreportParameterExpression><![CDATA[$F{total_cobro}]]></subreportParameterExpression>
 					</subreportParameter>

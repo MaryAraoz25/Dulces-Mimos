@@ -126,7 +126,7 @@ WHERE
 				<text><![CDATA[en concepto de]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="182" y="38" width="100" height="20" uuid="657ba2d5-1d8a-4f8b-addb-e23007f86ada"/>
+				<reportElement x="182" y="38" width="172" height="20" uuid="657ba2d5-1d8a-4f8b-addb-e23007f86ada"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="16"/>
 				</textElement>
@@ -138,13 +138,6 @@ WHERE
 					<font fontName="Times New Roman" size="16"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{idcompra_format}]]></textFieldExpression>
-			</textField>
-			<textField pattern="">
-				<reportElement x="8" y="7" width="504" height="20" uuid="2553b066-5c7b-44a2-bb2a-6d29cb7c973f"/>
-				<textElement>
-					<font fontName="Times New Roman" size="16"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd 'de' MMMM 'del' yyyy", new java.util.Locale("es", "ES")).format($F{fecha_pago})]]></textFieldExpression>
 			</textField>
 			<frame>
 				<reportElement x="0" y="0" width="522" height="126" uuid="a2ed692c-1571-4cf2-aa8a-28697d7ba36a"/>
@@ -164,6 +157,13 @@ WHERE
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "convertirpagos.jasper"]]></subreportExpression>
 				</subreport>
 			</frame>
+			<textField pattern="">
+				<reportElement x="8" y="7" width="504" height="20" uuid="2553b066-5c7b-44a2-bb2a-6d29cb7c973f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd 'de' MMMM 'del' yyyy", new java.util.Locale("es", "ES")).format($F{fecha_pago})]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

@@ -38,6 +38,7 @@
                     <input type="text" class="form-control" placeholder="Buscar Pedidos" style="color: #000000; background-color: white;" id="buscador" name="buscador">
                 </div>
                 <div class="card-body">
+                    <div class="table-responsive">
                     <table class="table table-bordered table-hover">
                         <thead class="text-center">
                             <tr>
@@ -54,6 +55,7 @@
                             <!-- Las compras se cargarán dinámicamente aquí -->
                         </tbody>
                     </table>
+                         </div>
                 </div>
             </div>
         </div>

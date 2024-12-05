@@ -73,8 +73,7 @@
             int empleados_id = (Integer) sesion.getAttribute("idempleados");
 
             // Verificar si hay una producción pendiente
-            Statement st1 = conn.createStatement();
-            ResultSet rsProduccionPendiente = st1.executeQuery("SELECT idproduccion FROM produccion WHERE estado_produccion = 'Pendiente' AND empleados_id = " + empleados_id + ";");
+            ResultSet rsProduccionPendiente = st.executeQuery("SELECT idproduccion FROM produccion WHERE estado_produccion = 'Pendiente' AND empleados_id = " + empleados_id + ";");
             if (rsProduccionPendiente.next()) {
                 out.println("<div class='alert alert-warning' role='alert'>Ya existe una producción en estado Pendiente.</div>");
             } else {
@@ -82,8 +81,7 @@
                 String pedidoSQL = (pedido_id != null && !pedido_id.trim().isEmpty()) ? pedido_id : "NULL";
 
                 // Insertar en la tabla producción
-                Statement st2 = conn.createStatement();
-                int rowsProduccion = st2.executeUpdate(
+                int rowsProduccion = st.executeUpdate(
                         "INSERT INTO produccion (fecha_elaboracion, fecha_vencimiento, estado_produccion, receta_id, empleados_id, cantidad, pedido_id) "
                         + "VALUES ('" + produccion_fecha_elaboracion + "', '" + produccion_fecha_vencimiento + "', '" + produccion_estado + "', "
                         + recetas_id + ", " + empleados_id + ", " + cantidad + ", " + pedidoSQL + ")",
@@ -91,22 +89,20 @@
                 );
 
                 if (rowsProduccion > 0) {
-                    Statement st3 = conn.createStatement();
-                    ResultSet generatedKeys = st3.getGeneratedKeys();
+                    ResultSet generatedKeys = st.getGeneratedKeys();
                     if (generatedKeys.next()) {
                         int idProduccion = generatedKeys.getInt(1);
 
                         // Obtener los ingredientes asociados a la receta y crear el detalle de producción
-                        Statement st4 = conn.createStatement();
-                        ResultSet rsDetalleRecetas = st4.executeQuery("SELECT ingredientes_id, cantidad FROM detalle_recetas WHERE recetas_id = " + recetas_id);
+                        Statement st1 = conn.createStatement();
+                        ResultSet rsDetalleRecetas = st1.executeQuery("SELECT ingredientes_id, cantidad FROM detalle_recetas WHERE recetas_id = " + recetas_id);
                         while (rsDetalleRecetas.next()) {
                             int ingredientes_id = rsDetalleRecetas.getInt("ingredientes_id");
                             int cantidadBase = rsDetalleRecetas.getInt("cantidad");
                             int cantidadFinal = cantidadBase * cantidad;
 
                             // Verificar si el ingrediente ya existe en el detalle de producción
-                            Statement st5 = conn.createStatement();
-                            ResultSet rsCheckExist = st5.executeQuery("SELECT * FROM detalle_produccion WHERE produccion_id = " + idProduccion + " AND ingredientes_id = " + ingredientes_id);
+                            ResultSet rsCheckExist = st.executeQuery("SELECT * FROM detalle_produccion WHERE produccion_id = " + idProduccion + " AND ingredientes_id = " + ingredientes_id);
                             if (!rsCheckExist.next()) {
                                 // Insertar el ingrediente si no existe en el detalle
                                 st.executeUpdate("INSERT INTO detalle_produccion (produccion_id, ingredientes_id, cantidad) VALUES (" + idProduccion + ", " + ingredientes_id + ", " + cantidadFinal + ")");
@@ -124,7 +120,7 @@
             }
             rsProduccionPendiente.close();
         } catch (SQLException e) {
-            out.println("<div class='alert alert-danger' role='alert'>Error al cargar producción: " + e.getMessage() + "</div>");
+            /*out.println("<div class='alert alert-danger' role='alert'>Error al cargar producción: " + e.getMessage() + "</div>");*/
         }
     } else if (listar != null && listar.equals("mostrardetalle")) {
         String recetaId = request.getParameter("receta_id");

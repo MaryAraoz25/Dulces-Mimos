@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3bff34fc-0c34-46c0-b01c-d0e5e89c6719">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="609" pageHeight="842" columnWidth="569" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3bff34fc-0c34-46c0-b01c-d0e5e89c6719">
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="220"/>
+	<property name="ireport.x" value="87"/>
 	<property name="ireport.y" value="45"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
@@ -29,9 +29,9 @@
 	<title>
 		<band height="132" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#FF007B" uuid="94325e3e-f268-419c-a8a5-e11d69ec748f"/>
+				<reportElement mode="Opaque" x="0" y="0" width="465" height="95" backcolor="#FF007B" uuid="94325e3e-f268-419c-a8a5-e11d69ec748f"/>
 				<staticText>
-					<reportElement x="2" y="2" width="449" height="93" uuid="27056a3e-9b4e-4473-8079-f41a37d84f81"/>
+					<reportElement x="0" y="2" width="465" height="93" uuid="27056a3e-9b4e-4473-8079-f41a37d84f81"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="46" isBold="true"/>
 					</textElement>
@@ -39,7 +39,7 @@
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement mode="Opaque" x="1" y="100" width="555" height="32" forecolor="#FF007B" backcolor="#FF007B" uuid="1785d3cc-1f99-45e5-b80e-e3d9d01a658e"/>
+				<reportElement mode="Opaque" x="1" y="100" width="566" height="32" forecolor="#FF007B" backcolor="#FF007B" uuid="1785d3cc-1f99-45e5-b80e-e3d9d01a658e"/>
 				<box>
 					<pen lineWidth="1.5"/>
 					<topPen lineWidth="1.5"/>
@@ -48,7 +48,7 @@
 					<rightPen lineWidth="1.5"/>
 				</box>
 				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="405" y="0" width="149" height="31" forecolor="#000000" uuid="38a37795-6cb5-4a67-835f-b16af228a514"/>
+					<reportElement x="417" y="0" width="149" height="31" forecolor="#000000" uuid="38a37795-6cb5-4a67-835f-b16af228a514"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="12" isBold="true"/>
 					</textElement>
@@ -56,7 +56,7 @@
 				</textField>
 			</frame>
 			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="451" y="2" width="102" height="92" uuid="413b35fb-f442-4eea-92ca-2945705f86d3"/>
+				<reportElement x="465" y="2" width="102" height="92" uuid="413b35fb-f442-4eea-92ca-2945705f86d3"/>
 				<imageExpression><![CDATA["./pasteleria.jpg"]]></imageExpression>
 			</image>
 		</band>
@@ -66,15 +66,8 @@
 	</pageHeader>
 	<columnHeader>
 		<band height="43" splitType="Stretch">
-			<staticText>
-				<reportElement style="Column header" x="323" y="2" width="61" height="38" forecolor="#000000" uuid="99f9c994-16eb-4ae4-994b-2ea80d774dad"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="16" isBold="true" isUnderline="false" isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[Cédula]]></text>
-			</staticText>
 			<frame>
-				<reportElement x="323" y="0" width="61" height="40" forecolor="#FF007B" backcolor="#FF007B" uuid="6e04c2b6-9754-474a-9e90-2bb5fdc1653f"/>
+				<reportElement x="323" y="0" width="75" height="40" forecolor="#FF007B" backcolor="#FF007B" uuid="6e04c2b6-9754-474a-9e90-2bb5fdc1653f"/>
 				<box>
 					<pen lineWidth="1.5"/>
 					<topPen lineWidth="1.5"/>
@@ -82,6 +75,13 @@
 					<bottomPen lineWidth="1.5"/>
 					<rightPen lineWidth="1.5"/>
 				</box>
+				<staticText>
+					<reportElement style="Column header" x="0" y="1" width="75" height="38" forecolor="#000000" uuid="99f9c994-16eb-4ae4-994b-2ea80d774dad"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century Gothic" size="16" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+					</textElement>
+					<text><![CDATA[Cédula]]></text>
+				</staticText>
 			</frame>
 			<staticText>
 				<reportElement x="107" y="1" width="82" height="39" uuid="6ed344ae-aa05-481f-a451-f11669970f8f"/>
@@ -115,14 +115,7 @@
 				</box>
 			</frame>
 			<staticText>
-				<reportElement style="Column header" x="385" y="2" width="101" height="38" forecolor="#000000" uuid="bc2f78e8-abac-4109-b230-7d3d0e6205ca"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Century Gothic" size="16" isBold="true" isUnderline="false" isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[Teléfono]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="487" y="2" width="67" height="38" forecolor="#000000" uuid="332b6503-066b-4311-89ea-81bcede0b412"/>
+				<reportElement style="Column header" x="500" y="1" width="67" height="38" forecolor="#000000" uuid="332b6503-066b-4311-89ea-81bcede0b412"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Century Gothic" size="16" isBold="true" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
@@ -166,7 +159,7 @@
 				</box>
 			</frame>
 			<frame>
-				<reportElement x="487" y="0" width="67" height="40" forecolor="#FF007B" backcolor="#FF007B" uuid="4b0972ab-d0c5-448f-aaaa-36d568ba67bd"/>
+				<reportElement x="501" y="0" width="67" height="40" forecolor="#FF007B" backcolor="#FF007B" uuid="4b0972ab-d0c5-448f-aaaa-36d568ba67bd"/>
 				<box>
 					<pen lineWidth="1.5"/>
 					<topPen lineWidth="1.5"/>
@@ -176,7 +169,7 @@
 				</box>
 			</frame>
 			<frame>
-				<reportElement x="385" y="-1" width="102" height="41" forecolor="#FF007B" backcolor="#FF007B" uuid="cfd3da3e-f70b-47b4-88f9-434cf2bc6256"/>
+				<reportElement x="398" y="-1" width="102" height="41" forecolor="#FF007B" backcolor="#FF007B" uuid="cfd3da3e-f70b-47b4-88f9-434cf2bc6256"/>
 				<box>
 					<pen lineWidth="1.5"/>
 					<topPen lineWidth="1.5"/>
@@ -184,13 +177,20 @@
 					<bottomPen lineWidth="1.5"/>
 					<rightPen lineWidth="1.5"/>
 				</box>
+				<staticText>
+					<reportElement style="Column header" x="0" y="2" width="101" height="38" forecolor="#000000" uuid="bc2f78e8-abac-4109-b230-7d3d0e6205ca"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century Gothic" size="16" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+					</textElement>
+					<text><![CDATA[Teléfono]]></text>
+				</staticText>
 			</frame>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="25" splitType="Stretch">
 			<frame>
-				<reportElement style="Row" mode="Opaque" x="2" y="0" width="555" height="25" uuid="32545918-158e-4505-88a6-9abc35a98a95"/>
+				<reportElement style="Row" mode="Opaque" x="2" y="0" width="565" height="25" uuid="32545918-158e-4505-88a6-9abc35a98a95"/>
 				<textField>
 					<reportElement x="0" y="0" width="26" height="20" uuid="c3496ab0-ced9-480a-a367-8520faab508b"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -220,21 +220,21 @@
 					<textFieldExpression><![CDATA[$F{cli_direccion}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="321" y="0" width="61" height="20" uuid="5ec1b41a-1c80-414b-92d4-4783cfdc274e"/>
+					<reportElement x="321" y="0" width="75" height="20" uuid="5ec1b41a-1c80-414b-92d4-4783cfdc274e"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{cli_cedula}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="383" y="0" width="101" height="20" uuid="ece2830f-64cd-4853-a66b-f6c271785f53"/>
+					<reportElement x="396" y="0" width="101" height="20" uuid="ece2830f-64cd-4853-a66b-f6c271785f53"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{cli_telefono}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="485" y="0" width="68" height="20" uuid="8445d9c5-d594-4b77-81d6-8d27de531d96"/>
+					<reportElement x="496" y="0" width="69" height="20" uuid="8445d9c5-d594-4b77-81d6-8d27de531d96"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="14"/>
 					</textElement>
